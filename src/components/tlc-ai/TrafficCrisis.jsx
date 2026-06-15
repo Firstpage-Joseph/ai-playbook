@@ -5,9 +5,9 @@ import {
 } from './shared.jsx'
 
 const kpis = [
-  { val: '80%', color: blue, label: 'Rely on AI-written results', desc: 'of consumers now rely on AI-written results for at least 40% of their searches. (Bain & Company, February 2025)' },
-  { val: '60%', color: blue, label: 'Searches end without a click', desc: 'roughly 60% of searches now end without the user clicking through to any website at all. (Bain & Company)' },
-  { val: '34.5%', color: red, label: 'Rank 1 clicks lost', desc: 'of Rank 1 results don\'t get clicked when an AI Overview sits above them. (Ahrefs)' },
+  { val: '80%', color: blue, label: '', desc: 'of consumers now rely on AI-written results for at least 40% of their searches. (Bain & Company, February 2025)' },
+  { val: '60%', color: blue, label: '', desc: 'roughly 60% of searches now end without the user clicking through to any website at all. (Bain & Company)' },
+  { val: '34.5%', color: red, label: '', desc: 'of Rank 1 results don\'t get clicked when an AI Overview sits above them. (Ahrefs)' },
 ]
 
 export default function TrafficCrisis() {
