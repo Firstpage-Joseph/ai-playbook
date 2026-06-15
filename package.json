@@ -4,10 +4,14 @@
   "description": "TLC AI Search Playbook landing page — /tlc-ai",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": "22"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "vite preview --host 0.0.0.0 --port ${PORT:-4173}"
   },
   "dependencies": {
     "clsx": "^2.1.1",
