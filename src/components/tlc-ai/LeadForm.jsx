@@ -51,14 +51,16 @@ export default function LeadForm() {
     }
 
     // HubSpot posts a message to the parent window on submit — works for
-    // iframe-embedded forms too. Trigger the playbook download on success.
+    // iframe-embedded forms too. The playbook download is GATED here: it only
+    // fires on a successful submission. Trigger it immediately (synchronously)
+    // so the browser hands it to the download manager before HubSpot's
+    // configured redirect-to-booking navigates the page away.
     let downloaded = false
     const onMessage = (event) => {
       const d = event.data
       if (d && d.type === 'hsFormCallback' && d.eventName === 'onFormSubmitted' && !downloaded) {
         downloaded = true
-        // small delay so HubSpot's own redirect/thank-you logic settles first
-        setTimeout(downloadPlaybook, 600)
+        downloadPlaybook()
       }
     }
     window.addEventListener('message', onMessage)

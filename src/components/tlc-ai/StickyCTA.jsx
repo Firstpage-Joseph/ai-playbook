@@ -31,10 +31,10 @@ export default function StickyCTA() {
           }}
         >
           <div style={{ minWidth: 0 }}>
-            <div style={{ fontFamily: font, fontSize: 13, fontWeight: 800, color: fg, lineHeight: 1.2 }}>Free AI visibility audit</div>
-            <div style={{ fontFamily: font, fontSize: 11, color: fgMuted, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>See where you're cited — no cost.</div>
+            <div style={{ fontFamily: font, fontSize: 13, fontWeight: 800, color: fg, lineHeight: 1.2 }}>The AI Search Playbook</div>
+            <div style={{ fontFamily: font, fontSize: 11, color: fgMuted, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Free download — get recommended by AI.</div>
           </div>
-          <Btn href="#audit" variant="red" style={{ flexShrink: 0, padding: '11px 18px', fontSize: 13 }}>Get Audit</Btn>
+          <Btn href="#audit" variant="red" style={{ flexShrink: 0, padding: '11px 18px', fontSize: 13 }}>Get Playbook</Btn>
         </motion.div>
       )}
     </AnimatePresence>

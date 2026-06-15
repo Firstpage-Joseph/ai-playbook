@@ -152,8 +152,8 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.55 }}
               style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}
             >
-              <Btn href="#audit" variant="red">Request Your Free AI Audit →</Btn>
-              <Btn href="#crisis" variant="white">Read the Playbook</Btn>
+              <Btn href="#audit" variant="red">Download The Playbook →</Btn>
+              <Btn href="#crisis" variant="white">Preview Inside</Btn>
             </motion.div>
           </div>
 

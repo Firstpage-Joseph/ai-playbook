@@ -35,9 +35,6 @@ export default function TrafficCrisis() {
             <div style={{ fontFamily: font, fontSize: 'clamp(56px,9vw,104px)', fontWeight: 900, color: red, lineHeight: 0.95, letterSpacing: '-0.04em' }}>
               -46.8%
             </div>
-            <div style={{ fontFamily: font, fontSize: 13, fontWeight: 700, letterSpacing: '0.04em', color: fgMuted, marginTop: 6 }}>
-              ORGANIC SEARCH SESSIONS · JAN–JUN 2026 vs 2025
-            </div>
           </div>
           <p style={{ flex: 1, minWidth: 280, fontFamily: font, fontSize: 'clamp(14px,1.5vw,16px)', color: fgMuted, lineHeight: 1.7 }}>
             Between January and June 2026, organic search sessions on our own site fell by nearly half compared with the same period in 2025. Our rankings held. The content didn't get worse. What changed is where the answer lives. For a growing share of searches, it now sits on the results page itself, written by AI, and the click that used to follow never happens.

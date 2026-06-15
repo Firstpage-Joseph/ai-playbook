@@ -111,7 +111,7 @@ export default function AnswerEngineChecklist() {
                 <p style={{ fontFamily: font, fontSize: 'clamp(15px,1.6vw,17px)', color: fg, lineHeight: 1.65, fontWeight: 500, marginBottom: flagged >= 4 ? 20 : 0 }}>
                   If you answered "no" or "don't know" to four or more of these, your AI visibility is being settled right now by defaults, competitors and third-party pages, rather than by anything you control. The gap is fixable, but it compounds in whichever direction it's already moving.
                 </p>
-                {flagged >= 4 && <Btn href="#audit" variant="red">Request Your Free AI Audit →</Btn>}
+                {flagged >= 4 && <Btn href="#audit" variant="red">Download The Playbook →</Btn>}
               </motion.div>
             )}
           </AnimatePresence>

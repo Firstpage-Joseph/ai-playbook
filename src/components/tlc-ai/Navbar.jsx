@@ -66,13 +66,13 @@ export default function Navbar() {
                 {label}
               </a>
             ))}
-            <Btn href="/FPD-AI-Search-Playbook.pdf" download="FPD AI Search Playbook.pdf" variant="red" style={{ padding: '9px 20px', fontSize: 13 }}>Download The Playbook</Btn>
+            <Btn href="#audit" variant="red" style={{ padding: '9px 20px', fontSize: 13 }}>Download The Playbook</Btn>
           </div>
         )}
 
         {isMobile && (
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <Btn href="/FPD-AI-Search-Playbook.pdf" download="FPD AI Search Playbook.pdf" variant="red" style={{ padding: '8px 16px', fontSize: 13 }}>Playbook</Btn>
+            <Btn href="#audit" variant="red" style={{ padding: '8px 16px', fontSize: 13 }}>Playbook</Btn>
             <button
               onClick={() => setMenuOpen((o) => !o)}
               aria-label="Toggle menu"
