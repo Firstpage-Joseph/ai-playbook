@@ -7,7 +7,9 @@ const FORM_ID = 'ed57cf52-3909-4059-8140-9b6b74a38540'
 const REGION = 'na2'
 
 // Served from /public — the playbook delivered after a successful submission.
-const PDF_URL = '/FPD-AI-Search-Playbook.pdf'
+// BASE_URL is the configured Vite base (e.g. "/ai-playbook/") so the path
+// resolves correctly when deployed under a subpath.
+const PDF_URL = `${import.meta.env.BASE_URL}FPD-AI-Search-Playbook.pdf`
 const PDF_FILENAME = 'FPD AI Search Playbook.pdf'
 
 function downloadPlaybook() {

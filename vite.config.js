@@ -7,7 +7,8 @@ import { fileURLToPath } from 'url'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig({
-  base: '/',
+  // Served as a subpage (Cloudflare Pages + Worker) under /ai-playbook/
+  base: '/ai-playbook/',
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
