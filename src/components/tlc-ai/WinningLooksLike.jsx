@@ -76,10 +76,6 @@ export default function WinningLooksLike() {
           </div>
         </motion.div>
 
-        <motion.p variants={fadeUp} style={{ textAlign: 'center', fontFamily: font, fontSize: 14, fontWeight: 700, color: fgMuted, marginBottom: 18 }}>
-          And the same approach is compounding elsewhere.
-        </motion.p>
-
         {/* Other cases */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px,100%), 1fr))', gap: 18 }}>
           {otherCases.map((c) => (

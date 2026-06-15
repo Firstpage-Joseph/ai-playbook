@@ -127,50 +127,6 @@ export default function HowAnswerEnginesWork() {
           </p>
         </motion.div>
 
-        {/* The study — 5 findings */}
-        <motion.h3 variants={fadeUp} style={{ fontFamily: font, fontSize: 'clamp(18px,2.2vw,24px)', fontWeight: 900, color: fg, marginBottom: 6 }}>
-          What We Found When We Studied 342,426 Passages
-        </motion.h3>
-        <motion.p variants={fadeUp} style={{ fontFamily: font, fontSize: 15, color: fgMuted, lineHeight: 1.7, marginBottom: 24, maxWidth: 760 }}>
-          At The Last Click Summit in 2026, our technical team presented a study built to answer one question: Which passages actually survive retrieval? We analysed 342,426 individual content passages across 12,958 unique URLs cited by AI engines. Five findings matter most for anyone trying to get a brand recommended.
-        </motion.p>
-
-        {/* 5 findings — flex so the last row centres instead of orphaning */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 16, marginBottom: 32 }}>
-          {findings.map((f) => (
-            <motion.div
-              key={f.n}
-              variants={fadeUp}
-              style={{ background: bg, border: `1.5px solid ${border}`, borderRadius: 14, padding: 'clamp(22px,3vw,30px)', display: 'flex', flexDirection: 'column', flex: '1 1 300px', maxWidth: 360 }}
-            >
-              <div style={{ fontFamily: font, fontSize: 12, fontWeight: 900, letterSpacing: '0.1em', color: fgDim, marginBottom: 12 }}>{f.n}</div>
-              <h4 style={{ fontFamily: font, fontSize: 'clamp(16px,1.7vw,18px)', fontWeight: 800, color: fg, lineHeight: 1.3, marginBottom: 10 }}>{f.t}</h4>
-              <p style={{ fontFamily: font, fontSize: 14, color: fgMuted, lineHeight: 1.65, flex: 1 }}>{f.d}</p>
-              {f.stat && (
-                <div style={{ marginTop: 16, paddingTop: 16, borderTop: `1px solid ${border}` }}>
-                  <div style={{ fontFamily: font, fontSize: 'clamp(22px,2.6vw,28px)', fontWeight: 900, color: blue, lineHeight: 1, letterSpacing: '-0.02em' }}>{f.stat}</div>
-                  <div style={{ fontFamily: font, fontSize: 12, color: fgMuted, marginTop: 5 }}>{f.statLabel}</div>
-                </div>
-              )}
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Two-step filter */}
-        <motion.div variants={fadeUp} style={{ background: `${blue}08`, border: `1.5px solid ${blue}28`, borderRadius: 14, padding: 'clamp(24px,4vw,36px)', marginBottom: 44 }}>
-          <div style={{ fontFamily: font, fontSize: 11, letterSpacing: '0.14em', fontWeight: 700, color: blue, marginBottom: 16 }}>PUT TOGETHER: A TWO-STEP FILTER</div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px,100%), 1fr))', gap: 18 }}>
-            <div>
-              <div style={{ fontFamily: font, fontSize: 15, fontWeight: 800, color: fg, marginBottom: 6 }}>At page level</div>
-              <p style={{ fontFamily: font, fontSize: 14, color: fgMuted, lineHeight: 1.65 }}>Your metadata, title, headings and opening paragraph earn you a place in the candidate set.</p>
-            </div>
-            <div>
-              <div style={{ fontFamily: font, fontSize: 15, fontWeight: 800, color: fg, marginBottom: 6 }}>At passage level</div>
-              <p style={{ fontFamily: font, fontSize: 14, color: fgMuted, lineHeight: 1.65 }}>The engine then hunts inside the page for self-contained answer blocks it can lift cleanly into its context. A passage that only makes sense in sequence makes no sense to a retrieval system.</p>
-            </div>
-          </div>
-        </motion.div>
-
         {/* The pages AI reads are not always yours */}
         <motion.h3 variants={fadeUp} style={{ fontFamily: font, fontSize: 'clamp(18px,2.2vw,24px)', fontWeight: 900, color: fg, marginBottom: 6 }}>
           The Pages AI Reads Are Not Always Yours
@@ -186,12 +142,8 @@ export default function HowAnswerEnginesWork() {
           {categories.map((c) => <OwnershipBar key={c.label} {...c} />)}
         </motion.div>
 
-        <motion.p variants={fadeUp} style={{ fontFamily: font, fontSize: 14, color: fgMuted, lineHeight: 1.7, marginBottom: 32, maxWidth: 820 }}>
-          In healthcare, medical aesthetics and video production, around 79% of cited pages belong to the brands themselves, so the priority is making your own service pages directly answerable. Education, fitness, wellness and coworking sit in a hybrid zone, with owned pages accounting for roughly 57 to 70% of citations alongside trusted editorial roundups. In fintech the picture inverts: Owned pages account for closer to 41%, and comparison and listicle content shapes most answers. In categories like F&B catering, competitor pages themselves influence how the engine frames the entire category.
-        </motion.p>
-
-        {/* Platform sourcing + practical rule */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px,100%), 1fr))', gap: 16, marginBottom: 18 }}>
+        {/* Platform sourcing */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px,100%), 1fr))', gap: 16, marginTop: 18 }}>
           <motion.div variants={fadeUp} style={{ background: bg, border: `1.5px solid ${border}`, borderRadius: 14, padding: 'clamp(22px,3vw,30px)' }}>
             <div style={{ fontFamily: font, fontSize: 13, fontWeight: 800, color: blue, marginBottom: 10 }}>Google's AI surfaces</div>
             <p style={{ fontFamily: font, fontSize: 14, color: fgMuted, lineHeight: 1.65 }}>Draw heavily on community platforms and video, with Semrush's study finding Quora and Reddit the most-cited sites in AI Overviews and YouTube playing a growing role in how products get evaluated.</p>
@@ -201,13 +153,6 @@ export default function HowAnswerEnginesWork() {
             <p style={{ fontFamily: font, fontSize: 14, color: fgMuted, lineHeight: 1.65 }}>Leans on discussion platforms like Reddit alongside business and service websites, which made up half of the links in its answers in the same study.</p>
           </motion.div>
         </div>
-
-        <motion.div variants={fadeUp} style={{ background: `linear-gradient(135deg, ${blue}10, ${red}06)`, border: `1.5px solid ${blue}30`, borderRadius: 14, padding: 'clamp(24px,4vw,36px)' }}>
-          <div style={{ fontFamily: font, fontSize: 11, letterSpacing: '0.14em', fontWeight: 700, color: blue, marginBottom: 10 }}>THE PRACTICAL RULE</div>
-          <p style={{ fontFamily: font, fontSize: 'clamp(16px,1.8vw,20px)', color: fg, fontWeight: 600, lineHeight: 1.55 }}>
-            Optimise where the engine is already looking. Sometimes that's your service page. Sometimes it's the comparison article that ranks for your category. Sometimes it's a thread where your customers are already talking about you, or conspicuously not. A brand that only tends its own website is optimising a fraction of the surface the engines actually read.
-          </p>
-        </motion.div>
       </InView>
     </Section>
   )

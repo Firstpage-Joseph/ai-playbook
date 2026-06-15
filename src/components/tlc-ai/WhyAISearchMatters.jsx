@@ -38,10 +38,6 @@ export default function WhyAISearchMatters() {
           maxTitle={780}
         />
 
-        <motion.p variants={fadeUp} style={{ maxWidth: 820, margin: '0 auto clamp(28px,5vw,44px)', fontFamily: font, fontSize: 'clamp(15px,1.5vw,17px)', color: fgMuted, lineHeight: 1.75, textAlign: 'center' }}>
-          The instinct is to read all of this as a traffic problem and reach for a traffic solution: Publish more, rank for more, claw the sessions back. That misreads what's happening, because the visits being redistributed by AI are not average visits.
-        </motion.p>
-
         {/* Two conversion highlight cards */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px,100%), 1fr))', gap: 18, marginBottom: 18 }}>
           {/* 4.4x card */}
@@ -65,13 +61,6 @@ export default function WhyAISearchMatters() {
           </motion.div>
         </div>
 
-        {/* Pre-sold visitor narrative */}
-        <motion.div variants={fadeUp} style={{ maxWidth: 820, margin: '0 auto 18px' }}>
-          <p style={{ fontFamily: font, fontSize: 'clamp(15px,1.5vw,17px)', color: fgMuted, lineHeight: 1.75 }}>
-            The reason is simple once you picture the journey. By the time someone clicks through from an AI answer, the comparison work is done. The engine has weighed the options, narrowed the shortlist, and presented your brand with a reason attached. The visitor arrives pre-sold and informed, often with their objections already answered. Two decades of marketing effort have gone into manufacturing exactly this kind of visitor. AI answers now produce them by default.
-          </p>
-        </motion.div>
-
         {/* Cost of invisibility */}
         <motion.div
           variants={fadeUp}
@@ -92,22 +81,13 @@ export default function WhyAISearchMatters() {
           style={{
             background: `linear-gradient(135deg, ${blue}10, ${gold}08)`,
             border: `1.5px solid ${blue}30`, borderRadius: 16,
-            padding: 'clamp(24px,4vw,40px)', display: 'flex', flexWrap: 'wrap',
-            gap: 'clamp(20px,4vw,40px)', alignItems: 'center',
+            padding: 'clamp(24px,4vw,40px)',
           }}
         >
-          <div style={{ flexShrink: 0 }}>
-            <div style={{ fontFamily: font, fontSize: 'clamp(48px,7vw,76px)', fontWeight: 900, color: blue, lineHeight: 1, letterSpacing: '-0.04em' }}>~90%</div>
-            <div style={{ fontFamily: font, fontSize: 13, fontWeight: 700, color: fgMuted, marginTop: 6, maxWidth: 200 }}>
-              of ChatGPT's citations come from pages ranking position 21 or beyond
-            </div>
-          </div>
-          <div style={{ flex: 1, minWidth: 280 }}>
-            <div style={{ fontFamily: font, fontSize: 11, letterSpacing: '0.14em', fontWeight: 700, color: blue, marginBottom: 10 }}>THE BETTER NEWS</div>
-            <p style={{ fontFamily: font, fontSize: 'clamp(14px,1.5vw,16px)', color: fgMuted, lineHeight: 1.7 }}>
-              Answer engines don't simply copy Google's top 10. Semrush found that close to 90% of ChatGPT's citations come from pages ranking in position 21 or beyond for related queries. The engines reward content that answers the question cleanly, wherever it sits, which means <strong style={{ color: fg }}>challenger brands can be recommended ahead of incumbents</strong> who have held the rankings for years. For businesses in Singapore, the timing matters — that window will not stay open.
-            </p>
-          </div>
+          <div style={{ fontFamily: font, fontSize: 11, letterSpacing: '0.14em', fontWeight: 700, color: blue, marginBottom: 10 }}>THE BETTER NEWS</div>
+          <p style={{ fontFamily: font, fontSize: 'clamp(16px,1.8vw,20px)', color: fg, fontWeight: 600, lineHeight: 1.55 }}>
+            Answer engines reward content that answer questions cleanly. This is an opportunity for your brand to be recommended, even against those that have held Rank 1 on Google for years.
+          </p>
         </motion.div>
       </InView>
     </Section>

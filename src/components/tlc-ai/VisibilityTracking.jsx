@@ -29,10 +29,6 @@ export default function VisibilityTracking() {
           maxTitle={720}
         />
 
-        <motion.p variants={fadeUp} style={{ maxWidth: 820, margin: '0 auto clamp(28px,5vw,44px)', fontFamily: font, fontSize: 'clamp(15px,1.5vw,17px)', color: fgMuted, lineHeight: 1.75, textAlign: 'center' }}>
-          Google Analytics will show you a sliver of AI referral traffic, often mislabelled, and it will show you nothing at all about the far larger event: The answers being given about your category, hundreds of times a day, without a single click. Tracking AI visibility means measuring two things.
-        </motion.p>
-
         {/* Mentions vs Citations */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px,100%), 1fr))', gap: 18, marginBottom: 18 }}>
           <motion.div variants={fadeUp} style={{ background: bg, border: `1.5px solid ${blue}35`, borderRadius: 16, padding: 'clamp(24px,3.5vw,34px)' }}>
@@ -72,17 +68,6 @@ export default function VisibilityTracking() {
               </div>
             ))}
           </div>
-        </motion.div>
-
-        {/* Wise example */}
-        <motion.div variants={fadeUp} style={{ background: `${blue}08`, border: `1.5px solid ${blue}28`, borderLeft: `4px solid ${blue}`, borderRadius: 12, padding: 'clamp(24px,4vw,36px)', marginBottom: 44 }}>
-          <div style={{ fontFamily: font, fontSize: 11, letterSpacing: '0.14em', fontWeight: 700, color: blue, marginBottom: 12 }}>CITATIONS IN ACTION · WISE</div>
-          <p style={{ fontFamily: font, fontSize: 'clamp(14px,1.5vw,16px)', color: fgMuted, lineHeight: 1.7, marginBottom: 14 }}>
-            Wise is the clearest public example of citations working as intended. Ask Google's AI a question like "what platforms can I use to send money internationally with low fees" and Wise comes back as the top recommendation, supported by citations from its own content and from third-party sources like SingSaver. At The Last Click Summit, Wise's search team described the approach behind it in unglamorous terms: Solid SEO, plus content built to corroborate the long-tail questions users genuinely ask, which earns the citations that drive the recommendation.
-          </p>
-          <p style={{ fontFamily: font, fontSize: 'clamp(14px,1.5vw,16px)', color: fgMuted, lineHeight: 1.7 }}>
-            They were equally clear about what they didn't do. Wise doesn't try to compete on every AI query in its category. It concentrates resources on the questions where it can outshine the competition, and largely concedes the rest.
-          </p>
         </motion.div>
 
         {/* Tracking table */}

@@ -17,7 +17,7 @@ export default function FinalCTA() {
               Find out exactly where the problem lives.
             </h2>
             <p style={{ fontFamily: font, fontSize: 'clamp(15px,1.6vw,17px)', color: '#ffffffCC', lineHeight: 1.7, maxWidth: 680, margin: '0 auto' }}>
-              The checklist tells you whether you have a problem. It can't tell you precisely where the problem lives, and that's the part worth knowing before you spend anything fixing it. We run a free AI visibility audit that does exactly that — we put your brand through the same dashboard shown in this guide and map where you're mentioned, where you're cited, which queries your competitors currently own, and which ones are winnable first. You'll leave knowing your actual position in the answers your buyers are reading this week.
+              We run a free AI visibility audit that does exactly that — we put your brand through the same dashboard shown in this guide and map where you're mentioned, where you're cited, which queries your competitors currently own, and which ones are winnable first. You'll leave knowing your actual position in the answers your buyers are reading this week.
             </p>
           </motion.div>
 

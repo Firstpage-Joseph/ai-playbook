@@ -141,16 +141,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.35, ease }}
-              style={{ fontFamily: font, fontSize: 'clamp(15px, 1.6vw, 18px)', fontWeight: 400, color: `${fgLight}CC`, lineHeight: 1.7, maxWidth: 540, marginBottom: 14 }}
-            >
-              How answer engines decide which brands to recommend, how to measure whether yours is one of them, and what to check before your competitors do.
-            </motion.p>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.45, ease }}
-              style={{ fontFamily: font, fontSize: 'clamp(14px, 1.5vw, 16px)', fontWeight: 400, color: `${fgLight}AA`, lineHeight: 1.7, maxWidth: 540, marginBottom: 34, fontStyle: 'italic' }}
+              style={{ fontFamily: font, fontSize: 'clamp(15px, 1.6vw, 18px)', fontWeight: 400, color: `${fgLight}CC`, lineHeight: 1.7, maxWidth: 540, marginBottom: 34 }}
             >
               Right now, somewhere in Singapore, a buyer is asking ChatGPT: "Who's the best in Singapore?" The AI is answering with three or four names. If yours isn't one of them, this guide is for you.
             </motion.p>

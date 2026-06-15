@@ -47,3 +47,121 @@ body {
 
 /* Hide scrollbar on horizontal mobile strips */
 .x-scroll::-webkit-scrollbar { display: none; }
+
+/* ── HubSpot form light-theme overrides (ported from NexSEO) ────────────────── */
+#hubspot-form-container,
+#hubspot-form-container .hs-form {
+  font-family: 'Proxima Nova', 'Montserrat', 'Inter', sans-serif !important;
+  color: #0F1B35 !important;
+}
+
+#hubspot-form-container label,
+#hubspot-form-container legend,
+#hubspot-form-container .hs-form-field label,
+#hubspot-form-container .hs-form-field > label,
+#hubspot-form-container fieldset label,
+#hubspot-form-container .inputs-list label,
+#hubspot-form-container .hs-field-desc,
+#hubspot-form-container .hs-richtext,
+#hubspot-form-container .hs-richtext p {
+  color: #4A6080 !important;
+  font-family: 'Proxima Nova', 'Montserrat', 'Inter', sans-serif !important;
+}
+
+#hubspot-form-container .hs-form-field > label {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  margin-bottom: 6px !important;
+  display: block !important;
+}
+
+#hubspot-form-container .hs-input,
+#hubspot-form-container input[type="text"],
+#hubspot-form-container input[type="email"],
+#hubspot-form-container input[type="url"],
+#hubspot-form-container input[type="tel"],
+#hubspot-form-container textarea,
+#hubspot-form-container select {
+  width: 100% !important;
+  background: #F9FBFE !important;
+  border: 1px solid #DAE8F5 !important;
+  border-radius: 6px !important;
+  padding: 13px 16px !important;
+  font-family: 'Proxima Nova', 'Montserrat', 'Inter', sans-serif !important;
+  font-size: 15px !important;
+  color: #0F1B35 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  transition: border-color 0.2s !important;
+}
+
+#hubspot-form-container .hs-input:focus,
+#hubspot-form-container input:focus {
+  border-color: #1A6DD4 !important;
+  background: #ffffff !important;
+}
+
+#hubspot-form-container .hs-input::placeholder {
+  color: #8AAAC4 !important;
+}
+
+#hubspot-form-container .hs-form-field {
+  margin-bottom: 14px !important;
+}
+
+#hubspot-form-container .hs-submit .hs-button,
+#hubspot-form-container input[type="submit"] {
+  width: 100% !important;
+  background: #E83030 !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 6px !important;
+  padding: 15px !important;
+  font-family: 'Proxima Nova', 'Montserrat', 'Inter', sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+  cursor: pointer !important;
+  transition: background 0.22s !important;
+  margin-top: 6px !important;
+}
+
+#hubspot-form-container .hs-submit .hs-button:hover,
+#hubspot-form-container input[type="submit"]:hover {
+  background: #C42020 !important;
+}
+
+#hubspot-form-container .hs-error-msgs {
+  margin-top: 4px !important;
+}
+
+#hubspot-form-container .hs-error-msgs label {
+  color: #E83030 !important;
+  font-size: 12px !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+#hubspot-form-container .hs_error_rollup {
+  display: none !important;
+}
+
+#hubspot-form-container .legal-consent-container {
+  color: #6b7280 !important;
+  font-size: 12px !important;
+  line-height: 1.5 !important;
+}
+
+#hubspot-form-container .legal-consent-container a {
+  color: #1A6DD4 !important;
+}
+
+#hubspot-form-container .submitted-message {
+  color: #0F1B35 !important;
+  font-family: 'Proxima Nova', 'Montserrat', 'Inter', sans-serif !important;
+  font-size: 16px !important;
+  text-align: center !important;
+  padding: 24px 0 !important;
+}

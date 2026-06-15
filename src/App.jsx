@@ -7,7 +7,6 @@ import VisibilityTracking from './components/tlc-ai/VisibilityTracking.jsx'
 import WinningLooksLike from './components/tlc-ai/WinningLooksLike.jsx'
 import AnswerEngineChecklist from './components/tlc-ai/AnswerEngineChecklist.jsx'
 import FinalCTA from './components/tlc-ai/FinalCTA.jsx'
-import References from './components/tlc-ai/References.jsx'
 import Footer from './components/tlc-ai/Footer.jsx'
 import StickyCTA from './components/tlc-ai/StickyCTA.jsx'
 import { bg } from './components/tlc-ai/shared.jsx'
@@ -25,7 +24,6 @@ export default function App() {
         <WinningLooksLike />
         <AnswerEngineChecklist />
         <FinalCTA />
-        <References />
       </main>
       <Footer />
       <StickyCTA />
