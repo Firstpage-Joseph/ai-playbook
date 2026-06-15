@@ -6,6 +6,20 @@ const PORTAL_ID = '44221927'
 const FORM_ID = 'ed57cf52-3909-4059-8140-9b6b74a38540'
 const REGION = 'na2'
 
+// Served from /public — the playbook delivered after a successful submission.
+const PDF_URL = '/FPD-AI-Search-Playbook.pdf'
+const PDF_FILENAME = 'FPD AI Search Playbook.pdf'
+
+function downloadPlaybook() {
+  const a = document.createElement('a')
+  a.href = PDF_URL
+  a.download = PDF_FILENAME
+  a.rel = 'noopener'
+  document.body.appendChild(a)
+  a.click()
+  a.remove()
+}
+
 export default function LeadForm() {
   useEffect(() => {
     let attempts = 0
@@ -35,6 +49,20 @@ export default function LeadForm() {
     } else {
       tryInject()
     }
+
+    // HubSpot posts a message to the parent window on submit — works for
+    // iframe-embedded forms too. Trigger the playbook download on success.
+    let downloaded = false
+    const onMessage = (event) => {
+      const d = event.data
+      if (d && d.type === 'hsFormCallback' && d.eventName === 'onFormSubmitted' && !downloaded) {
+        downloaded = true
+        // small delay so HubSpot's own redirect/thank-you logic settles first
+        setTimeout(downloadPlaybook, 600)
+      }
+    }
+    window.addEventListener('message', onMessage)
+    return () => window.removeEventListener('message', onMessage)
   }, [])
 
   return <div id="hubspot-form-container" />
