@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+/* ── Reset ─────────────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* First Page / NexSEO brand tokens (mirrored from the reference theme) */
+  --color-bg: #FFFFFF;
+  --color-surface: #F4F8FD;
+  --color-surface-dark: #0A1B3D;
+  --color-border: #DAE8F5;
+  --color-blue: #1A6DD4;
+  --color-blue-light: #4A9AEA;
+  --color-blue-dark: #0F4FA8;
+  --color-red: #E83030;
+  --color-red-dark: #C42020;
+  --color-fg: #0F1B35;
+  --color-fg-muted: #4A6080;
+  --color-fg-dim: #8AAAC4;
+  --color-gold: #F59E0B;
+  --font-body: 'Proxima Nova', 'Montserrat', 'Inter', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Hide scrollbar on horizontal mobile strips */
+.x-scroll::-webkit-scrollbar { display: none; }
