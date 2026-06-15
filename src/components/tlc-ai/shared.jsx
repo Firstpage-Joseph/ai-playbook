@@ -144,7 +144,7 @@ export function SectionHeading({ chip, chipColor, title, subtitle, center = true
 }
 
 // ─── Button ───────────────────────────────────────────────────────────────────
-export function Btn({ href, variant = 'red', children, style: extra, onClick, type }) {
+export function Btn({ href, variant = 'red', children, style: extra, onClick, type, download }) {
   const map = {
     red: { bg: red, hov: redD, text: fgLight, border: 'none' },
     blue: { bg: blue, hov: blueD, text: fgLight, border: 'none' },
@@ -158,6 +158,7 @@ export function Btn({ href, variant = 'red', children, style: extra, onClick, ty
     <Comp
       href={href}
       type={type}
+      download={download}
       onClick={onClick}
       whileHover={{ scale: 1.03 }}
       whileTap={{ scale: 0.97 }}
