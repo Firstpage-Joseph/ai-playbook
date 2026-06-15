@@ -8,7 +8,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 // Served under the /tlc-ai route to match the production path.
 export default defineConfig({
-  base: '/tlc-ai/',
+  base: '/ai-playbook/',
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
