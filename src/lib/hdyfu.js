@@ -1,18 +1,19 @@
-// Shared helper: route a successful HubSpot form submission through the
-// "How did you find us?" attribution page before the final thank-you URL.
+// Shared helper for the landing-page lead forms.
 //
-// Flow: landing page form submit success
-//   -> /how-did-you-find-us/?thank_you=<original>&email=...&utm_*=...
+// Flow: form submit success
+//   -> embed the HubSpot meeting scheduler in place of the form
+//   -> on "meeting booked"
+//   -> /how-did-you-find-us/?thank_you=<thankYou>&email=...&utm_*=...
 //   -> attribution answer
-//   -> original thank-you URL
+//   -> thank-you page
 //
-// The HubSpot embedded form may have its own redirect configured in the HubSpot
-// UI. We read that redirect from the onFormSubmitted payload when available and
-// forward it as `thank_you`, then navigate ourselves so this step runs first. If
-// no HubSpot-side redirect exists, THANK_YOU_URL is used as the fallback.
+// NOTE: the HubSpot form's own "redirect to external URL" must be turned OFF in
+// the HubSpot UI (set to an inline thank-you message). Otherwise HubSpot will
+// navigate the page to the external meeting URL and discard the embedded meeting.
 
 export const HDYFU_URL = 'https://www.firstpagedigital.sg/how-did-you-find-us/';
 export const THANK_YOU_URL = 'https://www.firstpagedigital.sg/thank-you/';
+export const MEETING_URL = 'https://meetings-na2.hubspot.com/eugen-kim/growth-session';
 
 function readField(values, names) {
   for (const n of names) {
@@ -72,28 +73,100 @@ export function redirectToHdyfu(opts) {
   window.location.href = buildHdyfuUrl(opts);
 }
 
-// The booking wizard already inserts the attribution step after the meeting is
-// booked, so a form that redirects there must NOT be intercepted here (otherwise
-// the user would see "How did you find us?" twice).
-const BOOKING_HOSTS = ['booking.firstpagedigital.sg'];
+// -----------------------------------------------------------------------------
+// Embedded meeting -> attribution
+// -----------------------------------------------------------------------------
 
-export function isBookingUrl(u) {
-  if (!u) return false;
+function loadMeetingsScript(cb) {
+  if (document.querySelector('script[data-hs-meetings]')) {
+    cb();
+    return;
+  }
+  const s = document.createElement('script');
+  s.src = 'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js';
+  s.async = true;
+  s.setAttribute('data-hs-meetings', '1');
+  s.onload = cb;
+  s.onerror = () => console.error('Failed to load HubSpot Meetings script.');
+  document.head.appendChild(s);
+}
+
+function isHubSpotMeetingsOrigin(origin) {
   try {
-    return BOOKING_HOSTS.indexOf(new URL(u, window.location.origin).hostname) !== -1;
+    const host = new URL(origin).hostname;
+    return host === 'meetings.hubspot.com' || host.endsWith('.hubspot.com');
   } catch (e) {
-    return u.indexOf('booking.firstpagedigital.sg') !== -1;
+    return false;
   }
 }
 
-// Decide what to do after a successful HubSpot submission:
-//  - redirect already points at the booking wizard -> let it through unchanged
-//  - otherwise -> route through the attribution page, forwarding the original
-//    redirect (or THANK_YOU_URL) as the final thank-you target.
-export function handleHubspotSubmitted({ redirectUrl, values, hdyfuUrl = HDYFU_URL, thankYouUrl = THANK_YOU_URL } = {}) {
-  if (isBookingUrl(redirectUrl)) {
-    if (redirectUrl) window.location.href = redirectUrl;
+function isMeetingBooked(d) {
+  if (!d) return false;
+  return (
+    d.meetingBookSucceeded === true ||
+    d.meetingBooked === true ||
+    d.eventName === 'meetingBooked' ||
+    d.eventName === 'scheduler:meetingBooked'
+  );
+}
+
+// Replace the form container with the HubSpot meeting scheduler (prefilled), then
+// redirect through the attribution page once the meeting is booked.
+export function showMeetingThenHdyfu({
+  targetSelector = '#hubspot-form-container',
+  meetingUrl = MEETING_URL,
+  values = {},
+  hdyfuUrl = HDYFU_URL,
+  thankYouUrl = THANK_YOU_URL,
+} = {}) {
+  const container = document.querySelector(targetSelector);
+  if (!container) {
+    // Nowhere to embed — go straight to the attribution step.
+    redirectToHdyfu({ hdyfuUrl, thankYouUrl, values });
     return;
   }
-  redirectToHdyfu({ hdyfuUrl, thankYouUrl: redirectUrl || thankYouUrl, values });
+
+  // Prefill the meeting with the captured contact details.
+  let src;
+  try {
+    src = new URL(meetingUrl);
+  } catch (e) {
+    redirectToHdyfu({ hdyfuUrl, thankYouUrl, values });
+    return;
+  }
+  src.searchParams.set('embed', 'true');
+  const email = readField(values, ['email']);
+  const firstname = readField(values, ['firstname']);
+  const lastname = readField(values, ['lastname']);
+  if (email) src.searchParams.set('email', email);
+  if (firstname) src.searchParams.set('firstname', firstname);
+  if (lastname) src.searchParams.set('lastname', lastname);
+
+  const mount = document.createElement('div');
+  mount.id = 'hdyfu-meeting';
+  mount.style.width = '100%';
+  mount.style.minHeight = '700px';
+  mount.setAttribute('data-src', src.toString());
+
+  container.innerHTML = '';
+  container.appendChild(mount);
+
+  let booked = false;
+  const onMessage = (e) => {
+    if (booked || !isHubSpotMeetingsOrigin(e.origin) || !isMeetingBooked(e.data)) return;
+    booked = true;
+    window.removeEventListener('message', onMessage);
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'hubspot_meeting_booked', email: email || null });
+    redirectToHdyfu({ hdyfuUrl, thankYouUrl, values });
+  };
+  window.addEventListener('message', onMessage);
+
+  loadMeetingsScript(() => {
+    if (window.hbspt && window.hbspt.meetings) {
+      window.hbspt.meetings.create('#hdyfu-meeting');
+    } else {
+      console.error('HubSpot Meetings API not available.');
+    }
+  });
 }

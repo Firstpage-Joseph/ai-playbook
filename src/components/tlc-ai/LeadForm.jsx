@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { captureHubspotValues, handleHubspotSubmitted } from '../../lib/hdyfu.js'
+import { captureHubspotValues, showMeetingThenHdyfu } from '../../lib/hdyfu.js'
 
 // HubSpot embedded form — mirrors the NexSEO implementation.
 // Portal + region reused from the First Page HubSpot account; formId is TLC-specific.
@@ -42,14 +42,16 @@ export default function LeadForm() {
           onFormSubmit: ($form) => {
             capturedValues = captureHubspotValues($form)
           },
-          onFormSubmitted: ($form, data) => {
+          onFormSubmitted: () => {
             if (handled) return
             handled = true
             // Gate the playbook download on a successful submission, firing it
             // synchronously so the browser hands it to the download manager
-            // before we navigate to the attribution page.
+            // before the meeting embed replaces the form.
             downloadPlaybook()
-            handleHubspotSubmitted({ redirectUrl: data && data.redirectUrl, values: capturedValues })
+            // Show the meeting scheduler in place of the form; the attribution
+            // step runs after the meeting is booked.
+            showMeetingThenHdyfu({ values: capturedValues })
           },
         })
       } else if (attempts < 30) {
@@ -77,7 +79,7 @@ export default function LeadForm() {
       if (d && d.type === 'hsFormCallback' && d.eventName === 'onFormSubmitted' && !handled) {
         handled = true
         downloadPlaybook()
-        handleHubspotSubmitted({ redirectUrl: d.redirectUrl, values: capturedValues })
+        showMeetingThenHdyfu({ values: capturedValues })
       }
     }
     window.addEventListener('message', onMessage)
