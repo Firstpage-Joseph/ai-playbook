@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { captureHubspotValues, handleHubspotSubmitted } from '../../lib/hdyfu.js'
 
 // HubSpot embedded form — mirrors the NexSEO implementation.
 // Portal + region reused from the First Page HubSpot account; formId is TLC-specific.
@@ -26,6 +27,11 @@ export default function LeadForm() {
   useEffect(() => {
     let attempts = 0
 
+    // Submitted field values, captured before send so we can forward
+    // email / name / phone to the attribution page.
+    let capturedValues = {}
+    let handled = false
+
     const tryInject = () => {
       if (window.hbspt) {
         window.hbspt.forms.create({
@@ -33,6 +39,18 @@ export default function LeadForm() {
           formId: FORM_ID,
           region: REGION,
           target: '#hubspot-form-container',
+          onFormSubmit: ($form) => {
+            capturedValues = captureHubspotValues($form)
+          },
+          onFormSubmitted: ($form, data) => {
+            if (handled) return
+            handled = true
+            // Gate the playbook download on a successful submission, firing it
+            // synchronously so the browser hands it to the download manager
+            // before we navigate to the attribution page.
+            downloadPlaybook()
+            handleHubspotSubmitted({ redirectUrl: data && data.redirectUrl, values: capturedValues })
+          },
         })
       } else if (attempts < 30) {
         attempts++
@@ -52,17 +70,14 @@ export default function LeadForm() {
       tryInject()
     }
 
-    // HubSpot posts a message to the parent window on submit — works for
-    // iframe-embedded forms too. The playbook download is GATED here: it only
-    // fires on a successful submission. Trigger it immediately (synchronously)
-    // so the browser hands it to the download manager before HubSpot's
-    // configured redirect-to-booking navigates the page away.
-    let downloaded = false
+    // Fallback for iframe-embedded forms where the create() callbacks may not
+    // fire: detect the submit via postMessage and run the same handler.
     const onMessage = (event) => {
       const d = event.data
-      if (d && d.type === 'hsFormCallback' && d.eventName === 'onFormSubmitted' && !downloaded) {
-        downloaded = true
+      if (d && d.type === 'hsFormCallback' && d.eventName === 'onFormSubmitted' && !handled) {
+        handled = true
         downloadPlaybook()
+        handleHubspotSubmitted({ redirectUrl: d.redirectUrl, values: capturedValues })
       }
     }
     window.addEventListener('message', onMessage)
